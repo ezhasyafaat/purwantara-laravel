@@ -19,4 +19,13 @@ return [
     */
     'token'   => env('PURWANTARA_TOKEN'),
 
+    /*
+    |--------------------------------------------------------------------------
+    | Application mode
+    |--------------------------------------------------------------------------
+    |
+    | This value is a mode of your application
+    |
+    */
+    'mode'      => env('PURWANTARA_MODE')
 ];

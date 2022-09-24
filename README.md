@@ -18,6 +18,7 @@ php artisan vendor:publish --provider="Ezhasyafaat\PurwantaraLaravel\PurwantaraS
 And you have to provide bearer token in .env file. You can get bearer token at purwantara.id
 ```shell
 PURWANTARA_TOKEN="BEARER_TOKEN_FROM_PURWANTARA"
+PURWANTARA_MODE="SANDBOX" //You can fill this with "SANDBOX" for sandbox mode or "PRODUCTION" for production mode
 ```
 
 <h3 id="virtual-account">💈 Virtual account</h3>
@@ -37,7 +38,7 @@ public function create_va()
         'expected_amount'   => 10000, //Amount of virtual account
         'description'       => 'Testing create virtual account' //Description of virtual account
     ];
-
+    
     $response = Purwantara::create_virtual_account($input);
 }
 ```

@@ -6,7 +6,17 @@ use Illuminate\Support\Facades\Http;
 
 class Purwantara
 {
-    public const BASE_URL = 'https://api.purwantara.id/v1/';
+    
+    private $host;
+
+    public function __construct()
+    {
+        if (config('purwantara.mode') == 'production') {
+            $this->host     = 'https://api.purwantara.id/v1/';
+        } else if (config('purwantara.mode') == 'sandbox') {
+            $this->host     = 'https://sandbox-api.purwantara.id/v1/';      
+        }
+    }
 
     public function create_virtual_account($input)
     {
@@ -22,7 +32,7 @@ class Purwantara
         try {
             $response = Http::withToken(config('purwantara.token'))
                 ->withBody(json_encode($parameter), 'json')
-                ->post(self::BASE_URL.'virtual-account');
+                ->post($this->host.'virtual-account');
 
             $data = $response->json();
 
@@ -57,7 +67,7 @@ class Purwantara
     {
         try {
             $response = Http::withToken(config('app.token'))
-                ->post(self::BASE_URL.'virtual-account/cancel/'.$input['purwantara_uuid']);
+                ->post($this->host.'virtual-account/cancel/'.$input['purwantara_uuid']);
 
             $data = $response->json();
 
@@ -87,7 +97,7 @@ class Purwantara
     {
         try {
             $response = Http::withToken(config('app.token'))
-                ->get(self::BASE_URL.'virtual-account/inquiry/'.$input['purwantara_uuid']);
+                ->get($this->host.'virtual-account/inquiry/'.$input['purwantara_uuid']);
 
             $data = $response->json();
 
@@ -136,7 +146,7 @@ class Purwantara
         try {
             $response = Http::withToken(config('purwantara.token'))
                 ->withBody(json_encode($parameter), 'json')
-                ->post(self::BASE_URL.'qris');
+                ->post($this->host.'qris');
 
             $data = $response->json();
 
@@ -168,7 +178,7 @@ class Purwantara
     {
         try {
             $response = Http::withToken(config('app.token'))
-                ->get(self::BASE_URL.'qris/inquiry/'.$input['purwantara_uuid']);
+                ->get($this->host.'qris/inquiry/'.$input['purwantara_uuid']);
 
             $data = $response->json();
 
