@@ -57,3 +57,19 @@ public function cancel_va()
     $response = Purwantara::cancel_virtual_account($input);
 }
 ```
+
+- EXAMPLE INQUIRY VIRTUAL ACCOUNT
+```php
+use App\Models\Transaction;
+use Ezhasyafaat\PurwantaraLaravel\Purwantara;
+
+public function inquiry_va()
+{
+    $transaction    = Transaction::find(20);
+    $input = [
+        'purwantara_uuid' => $transaction->purwantara_uuid
+    ];
+
+    $response = Purwantara::inquiry_virtual_account($input);
+}
+```

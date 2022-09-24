@@ -33,6 +33,7 @@ class Purwantara {
                     'order_id_merchant' => $value['external_id'],
                     'display_name'      => $value['name'],
                     'channel_name'      => $value['bank'],
+                    'amount'            => $value['amount'],
                     'virtual_number'    => $value['va_number'],
                     'description'       => $value['description'],
                     'expired'           => $value['expired_at'],
@@ -71,6 +72,41 @@ class Purwantara {
             } else {
                 $return     = [
                     'message'    => 'Failed cancel virtual account',
+                ];
+            }
+
+            return $return;
+        } catch (\Throwable $th) {
+            $return['message']  = $th->getMessage();
+
+            return $return;
+        }
+    }
+
+    public function inquiry_virtual_account($input)
+    {
+        try {
+            $response   = Http::withToken(config('app.token'))
+                ->get(self::BASE_URL . 'virtual-account/inquiry/' . $input['purwantara_uuid']);
+            
+            $data   = $response->json();
+
+            if ($data['success'] == true) {
+                $value      = $data['data'];
+                $return     = [
+                    'purwantara_uuid'   => $value['uuid'],
+                    'order_id_merchant' => $value['external_id'],
+                    'display_name'      => $value['name'],
+                    'channel_name'      => $value['bank'],
+                    'virtual_number'    => $value['va_number'],
+                    'amount'            => $value['amount'],
+                    'description'       => $value['description'],
+                    'expired'           => $value['expired_at'],
+                    'payment_status'    => $value['status']            
+                ];
+            } else {
+                $return     = [
+                    'message'    => 'Failed inquiry virtual account',
                 ];
             }
 
