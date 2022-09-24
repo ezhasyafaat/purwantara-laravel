@@ -163,4 +163,36 @@ class Purwantara {
             return $return;
         }
     }
+
+    public function inquiry_qris($input)
+    {
+        try {
+            $response   = Http::withToken(config('app.token'))
+                ->get(self::BASE_URL . 'qris/inquiry/' . $input['purwantara_uuid']);
+            
+            $data   = $response->json();
+
+            if ($data['success'] == true) {
+                $value      = $data['data'];
+                $return     = [
+                    'purwantara_uuid'   => $value['uuid'],
+                    'order_id_merchant' => $value['external_id'],
+                    'qris_string'       => $value['qr_string'],
+                    'qris_url'          => $value['qr_url'],
+                    'expired'           => $value['expired_time'],
+                    'payment_status'    => $value['status'],            
+                ];
+            } else {
+                $return     = [
+                    'message'    => 'Failed inquiry qris',
+                ];
+            }
+
+            return $return;
+        } catch (\Throwable $th) {
+            $return['message']  = $th->getMessage();
+
+            return $return;
+        }
+    }
 }
