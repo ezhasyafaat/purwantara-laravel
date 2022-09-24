@@ -99,7 +99,7 @@ public function create_qris()
 }
 ```
 
-- EXAMPLE INQUIRY VIRTUAL ACCOUNT
+- EXAMPLE INQUIRY QRIS
 ```php
 use App\Models\Transaction;
 use Ezhasyafaat\PurwantaraPayment\Purwantara;
