@@ -98,3 +98,19 @@ public function create_qris()
     $response = Purwantara::create_qris($input);
 }
 ```
+
+- EXAMPLE INQUIRY VIRTUAL ACCOUNT
+```php
+use App\Models\Transaction;
+use Ezhasyafaat\PurwantaraPayment\Purwantara;
+
+public function inquiry_qris()
+{
+    $transaction    = Transaction::find(20);
+    $input = [
+        'purwantara_uuid' => $transaction->purwantara_uuid
+    ];
+
+    $response = Purwantara::inquiry_qris($input);
+}
+```
