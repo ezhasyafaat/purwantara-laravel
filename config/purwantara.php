@@ -1,8 +1,8 @@
 <?php
 
 /**
- * Config for purwantara package
- * 
+ * Config for purwantara package.
+ *
  * @author ezhasyafaat
  */
 
