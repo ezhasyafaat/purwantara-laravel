@@ -10,9 +10,9 @@ class Purwantara
 
     public function __construct()
     {
-        if (config('purwantara.mode') == 'production') {
+        if (config('purwantara.mode') == 'PRODUCTION') {
             $this->host = 'https://api.purwantara.id/v1/';
-        } elseif (config('purwantara.mode') == 'sandbox') {
+        } elseif (config('purwantara.mode') == 'SANDBOX') {
             $this->host = 'https://sandbox-api.purwantara.id/v1/';
         }
     }
