@@ -117,4 +117,50 @@ class Purwantara {
             return $return;
         }
     }
+
+    public function create_qris($input)
+    {
+        $parameter      = [
+            'amount'                    => $input['amount'],
+            'customer_email'            => $input['customer_email'],
+            'customer_first_name'       => $input['customer_first_name'],
+            'customer_last_name'        => $input['customer_last_name'],
+            'customer_phon'             => $input['customer_phone'],
+            'transaction_description'   => $input['description'],
+            'payment_channel'           => $input['channel_name'],
+            'order_id'                  => $input['order_id_merchant'],
+            'merchant_trx_id'           => $input['order_id_merchant'],
+            'payment_method'            => 'wallet',
+        ];
+
+        try {
+            $response   = Http::withToken(config('purwantara.token'))
+                ->withBody(json_encode($parameter), 'json')
+                ->post(self::BASE_URL . 'qris');
+            
+            $data   = $response->json();
+
+            if ($data['success'] == true) {
+                $value      = $data['data'];
+                $return     = [
+                    'purwantara_uuid'   => $value['uuid'],
+                    'order_id_merchant' => $value['external_id'],
+                    'qris_string'       => $value['qr_string'],
+                    'qris_url'          => $value['qr_url'],
+                    'expired'           => $value['expired_time'],
+                    'payment_status'    => $value['status'],            
+                ];
+            } else {
+                $return     = [
+                    'message'    => 'Failed created virtual account',
+                ];
+            }
+
+            return $return;
+        } catch (\Throwable $th) {
+            $return['message']  = $th->getMessage();
+
+            return $return;
+        }
+    }
 }
