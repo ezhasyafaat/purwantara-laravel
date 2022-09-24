@@ -27,5 +27,5 @@ return [
     | This value is a mode of your application
     |
     */
-    'mode'      => env('PURWANTARA_MODE')
+    'mode'      => env('PURWANTARA_MODE'),
 ];

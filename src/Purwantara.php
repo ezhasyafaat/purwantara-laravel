@@ -6,15 +6,14 @@ use Illuminate\Support\Facades\Http;
 
 class Purwantara
 {
-    
     private $host;
 
     public function __construct()
     {
         if (config('purwantara.mode') == 'production') {
-            $this->host     = 'https://api.purwantara.id/v1/';
-        } else if (config('purwantara.mode') == 'sandbox') {
-            $this->host     = 'https://sandbox-api.purwantara.id/v1/';      
+            $this->host = 'https://api.purwantara.id/v1/';
+        } elseif (config('purwantara.mode') == 'sandbox') {
+            $this->host = 'https://sandbox-api.purwantara.id/v1/';
         }
     }
 
