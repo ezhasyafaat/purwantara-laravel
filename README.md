@@ -1,7 +1,7 @@
 # PURWANTARA LARAVEL
 
 <p align="center">
-    <img src="https://i.ibb.co/qd23Mwj/Main-banner.png" alt="purwantara-laravel">
+    <img src="https://i.ibb.co/rwDMggx/purwantara-laravel.png" alt="purwantara-laravel">
 </p>
 
 <h3 id="purwantara">✨ What is Purwantara?</h3> 
