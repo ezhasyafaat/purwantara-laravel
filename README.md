@@ -25,8 +25,8 @@ Virtual accounts is a medium for receiving payments that customer pay.
 
 - EXAMPLE CREATE VIRTUAL ACCOUNT
 ```php
-use Ezhasyafaat\PurwantaraLaravel\Purwantara;
 use Illuminate\Support\Str;
+use Ezhasyafaat\PurwantaraPayment\Purwantara;
 
 public function create_va()
 {
@@ -45,7 +45,7 @@ public function create_va()
 - EXAMPLE CANCEL VIRTUAL ACCOUNT
 ```php
 use App\Models\Transaction;
-use Ezhasyafaat\PurwantaraLaravel\Purwantara;
+use Ezhasyafaat\PurwantaraPayment\Purwantara;
 
 public function cancel_va()
 {
@@ -61,7 +61,7 @@ public function cancel_va()
 - EXAMPLE INQUIRY VIRTUAL ACCOUNT
 ```php
 use App\Models\Transaction;
-use Ezhasyafaat\PurwantaraLaravel\Purwantara;
+use Ezhasyafaat\PurwantaraPayment\Purwantara;
 
 public function inquiry_va()
 {
