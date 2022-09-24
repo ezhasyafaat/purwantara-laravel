@@ -4,13 +4,13 @@ namespace Ezhasyafaat\PurwantaraPayment;
 
 use Illuminate\Support\Facades\Http;
 
-class Purwantara {
-    
-    public const BASE_URL      = "https://api.purwantara.id/v1/";
+class Purwantara
+{
+    public const BASE_URL = 'https://api.purwantara.id/v1/';
 
     public function create_virtual_account($input)
-    {   
-        $parameter  = [
+    {
+        $parameter = [
             'name'              => $input['display_name'],
             'bank'              => $input['channel_name'],
             'external_id'       => $input['order_id_merchant'],
@@ -20,15 +20,15 @@ class Purwantara {
         ];
 
         try {
-            $response   = Http::withToken(config('purwantara.token'))
+            $response = Http::withToken(config('purwantara.token'))
                 ->withBody(json_encode($parameter), 'json')
-                ->post(self::BASE_URL . 'virtual-account');
-        
-            $data   = $response->json();
+                ->post(self::BASE_URL.'virtual-account');
+
+            $data = $response->json();
 
             if ($data['success'] == true) {
-                $value      = $data['data'];
-                $return     = [
+                $value = $data['data'];
+                $return = [
                     'purwantara_uuid'   => $value['uuid'],
                     'order_id_merchant' => $value['external_id'],
                     'display_name'      => $value['name'],
@@ -37,17 +37,17 @@ class Purwantara {
                     'virtual_number'    => $value['va_number'],
                     'description'       => $value['description'],
                     'expired'           => $value['expired_at'],
-                    'payment_status'    => $value['status']            
+                    'payment_status'    => $value['status'],
                 ];
             } else {
-                $return     = [
+                $return = [
                     'message'    => 'Failed created virtual account',
                 ];
             }
 
             return $return;
         } catch (\Throwable $th) {
-            $return['message']  = $th->getMessage();
+            $return['message'] = $th->getMessage();
 
             return $return;
         }
@@ -56,28 +56,28 @@ class Purwantara {
     public function cancel_virtual_account($input)
     {
         try {
-            $response   = Http::withToken(config('app.token'))
-                ->post(self::BASE_URL . 'virtual-account/cancel/' . $input['purwantara_uuid']);
-            
-            $data   = $response->json();
+            $response = Http::withToken(config('app.token'))
+                ->post(self::BASE_URL.'virtual-account/cancel/'.$input['purwantara_uuid']);
+
+            $data = $response->json();
 
             if ($data['success'] == true) {
-                $value      = $data['data'];
-                $return     = [
+                $value = $data['data'];
+                $return = [
                     'order_id_merchant'     => $value['external_id'],
                     'purwantara_uuid'       => $value['uuid'],
                     'virtual_number'        => $value['va_number'],
-                    'message'               => $value['message']
+                    'message'               => $value['message'],
                 ];
             } else {
-                $return     = [
+                $return = [
                     'message'    => 'Failed cancel virtual account',
                 ];
             }
 
             return $return;
         } catch (\Throwable $th) {
-            $return['message']  = $th->getMessage();
+            $return['message'] = $th->getMessage();
 
             return $return;
         }
@@ -86,14 +86,14 @@ class Purwantara {
     public function inquiry_virtual_account($input)
     {
         try {
-            $response   = Http::withToken(config('app.token'))
-                ->get(self::BASE_URL . 'virtual-account/inquiry/' . $input['purwantara_uuid']);
-            
-            $data   = $response->json();
+            $response = Http::withToken(config('app.token'))
+                ->get(self::BASE_URL.'virtual-account/inquiry/'.$input['purwantara_uuid']);
+
+            $data = $response->json();
 
             if ($data['success'] == true) {
-                $value      = $data['data'];
-                $return     = [
+                $value = $data['data'];
+                $return = [
                     'purwantara_uuid'   => $value['uuid'],
                     'order_id_merchant' => $value['external_id'],
                     'display_name'      => $value['name'],
@@ -102,17 +102,17 @@ class Purwantara {
                     'amount'            => $value['amount'],
                     'description'       => $value['description'],
                     'expired'           => $value['expired_at'],
-                    'payment_status'    => $value['status']            
+                    'payment_status'    => $value['status'],
                 ];
             } else {
-                $return     = [
+                $return = [
                     'message'    => 'Failed inquiry virtual account',
                 ];
             }
 
             return $return;
         } catch (\Throwable $th) {
-            $return['message']  = $th->getMessage();
+            $return['message'] = $th->getMessage();
 
             return $return;
         }
@@ -120,7 +120,7 @@ class Purwantara {
 
     public function create_qris($input)
     {
-        $parameter      = [
+        $parameter = [
             'amount'                    => $input['amount'],
             'customer_email'            => $input['customer_email'],
             'customer_first_name'       => $input['customer_first_name'],
@@ -134,31 +134,31 @@ class Purwantara {
         ];
 
         try {
-            $response   = Http::withToken(config('purwantara.token'))
+            $response = Http::withToken(config('purwantara.token'))
                 ->withBody(json_encode($parameter), 'json')
-                ->post(self::BASE_URL . 'qris');
-            
-            $data   = $response->json();
+                ->post(self::BASE_URL.'qris');
+
+            $data = $response->json();
 
             if ($data['success'] == true) {
-                $value      = $data['data'];
-                $return     = [
+                $value = $data['data'];
+                $return = [
                     'purwantara_uuid'   => $value['uuid'],
                     'order_id_merchant' => $value['external_id'],
                     'qris_string'       => $value['qr_string'],
                     'qris_url'          => $value['qr_url'],
                     'expired'           => $value['expired_time'],
-                    'payment_status'    => $value['status'],            
+                    'payment_status'    => $value['status'],
                 ];
             } else {
-                $return     = [
+                $return = [
                     'message'    => 'Failed created virtual account',
                 ];
             }
 
             return $return;
         } catch (\Throwable $th) {
-            $return['message']  = $th->getMessage();
+            $return['message'] = $th->getMessage();
 
             return $return;
         }
@@ -167,30 +167,30 @@ class Purwantara {
     public function inquiry_qris($input)
     {
         try {
-            $response   = Http::withToken(config('app.token'))
-                ->get(self::BASE_URL . 'qris/inquiry/' . $input['purwantara_uuid']);
-            
-            $data   = $response->json();
+            $response = Http::withToken(config('app.token'))
+                ->get(self::BASE_URL.'qris/inquiry/'.$input['purwantara_uuid']);
+
+            $data = $response->json();
 
             if ($data['success'] == true) {
-                $value      = $data['data'];
-                $return     = [
+                $value = $data['data'];
+                $return = [
                     'purwantara_uuid'   => $value['uuid'],
                     'order_id_merchant' => $value['external_id'],
                     'qris_string'       => $value['qr_string'],
                     'qris_url'          => $value['qr_url'],
                     'expired'           => $value['expired_time'],
-                    'payment_status'    => $value['status'],            
+                    'payment_status'    => $value['status'],
                 ];
             } else {
-                $return     = [
+                $return = [
                     'message'    => 'Failed inquiry qris',
                 ];
             }
 
             return $return;
         } catch (\Throwable $th) {
-            $return['message']  = $th->getMessage();
+            $return['message'] = $th->getMessage();
 
             return $return;
         }
