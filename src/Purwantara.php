@@ -54,6 +54,6 @@ class Purwantara {
 
     public function cancel_virtual_account($input)
     {
-        
+
     }
 }
