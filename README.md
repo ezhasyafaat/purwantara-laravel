@@ -1,8 +1,8 @@
-# PURWANTARA LARAVEL
-
 <p align="center">
-    <img src="https://i.ibb.co/rwDMggx/purwantara-laravel.png" alt="purwantara-laravel">
+    <img src="https://i.ibb.co/HCwSsKx/purwantara-laravel-1.png" alt="purwantara-laravel">
 </p>
+
+# PURWANTARA LARAVEL
 
 <h3 id="purwantara">✨ What is Purwantara?</h3> 
 Purwantara is a digital payment service provider that helps businesses to accept digital payments with seamless and secure. Some of the payment services provided by Purwantara are Virtual Account, E Wallet, Credit Card and QRIS.
