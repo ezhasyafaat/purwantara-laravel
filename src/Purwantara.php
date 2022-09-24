@@ -54,6 +54,31 @@ class Purwantara {
 
     public function cancel_virtual_account($input)
     {
+        try {
+            $response   = Http::withToken(config('app.token'))
+                ->post(self::BASE_URL . 'virtual-account/cancel/' . $input['purwantara_uuid']);
+            
+            $data   = $response->json();
 
+            if ($data['success'] == true) {
+                $value      = $data['data'];
+                $return     = [
+                    'order_id_merchant'     => $value['external_id'],
+                    'purwantara_uuid'       => $value['uuid'],
+                    'virtual_number'        => $value['va_number'],
+                    'message'               => $value['message']
+                ];
+            } else {
+                $return     = [
+                    'message'    => 'Failed cancel virtual account',
+                ];
+            }
+
+            return $return;
+        } catch (\Throwable $th) {
+            $return['message']  = $th->getMessage();
+
+            return $return;
+        }
     }
 }
