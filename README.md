@@ -1,4 +1,4 @@
 # PURWANTARA LARAVEL
 
 ### ✨ WHAT IS PURWANTARA?
-Purwantara adalah penyedia layanan pembayaran digital yang membantu para pelaku bisnis dan UMKM untuk menerima pembayaran digital dengen müdah dan aman. Beberapa layanan pembayaran yang disediakan Purwantara adalah Virtual Account, E Wallet, Kartu Kredit dan QRIS.
+Purwantara is a digital payment service provider that helps businesses to accept digital payments with seamless and secure. Some of the payment services provided by Purwantara are Virtual Account, E Wallet, Credit Card and QRIS.
