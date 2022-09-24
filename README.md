@@ -9,6 +9,17 @@ Purwantara is a digital payment service provider that helps businesses to accept
 composer require ezhasyafaat/purwantara-laravel
 ```
 
+<h3 id="setup-configuration">🛠 Setup configuration</h3>
+
+```bash
+php artisan vendor:publish --provider="Ezhasyafaat\PurwantaraLaravel\PurwantaraServiceProvider" --tag="config"
+```
+
+And you have to provide bearer token in .env file. You can get bearer token at purwantara.id
+```shell
+PURWANTARA_TOKEN="BEARER_TOKEN_FROM_PURWANTARA"
+```
+
 <h3 id="virtual-account">💳 Virtual account</h3>
 Virtual accounts is a medium for receiving payments that customer pay.
 
