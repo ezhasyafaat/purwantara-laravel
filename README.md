@@ -23,7 +23,7 @@ PURWANTARA_TOKEN="BEARER_TOKEN_FROM_PURWANTARA"
 <h3 id="virtual-account">💳 Virtual account</h3>
 Virtual accounts is a medium for receiving payments that customer pay.
 
-- How to create Virtual Account?
+- CREATE VIRTUAL ACCOUNT
 ```php
 use Ezhasyafaat\PurwantaraLaravel\Purwantara;
 use Illuminate\Support\Str;
