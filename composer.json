@@ -1,0 +1,25 @@
+{
+    "name": "ezhasyafaat/purwantara-laravel",
+    "description": "Package for use payment in purwantara.id",
+    "type": "library",
+    "require": {
+        "illuminate/support": "^6.0|^7.0|^8.0|^9.0",
+        "php": "^7.0|^8.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^7.7",
+        "phpunit/phpunit": "^9.5"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Ezhasyafaat\\PurwantaraPayment\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Muh Ezha Syafaat",
+            "email": "ezhasyafaat@gmail.com"
+        }
+    ]
+}
