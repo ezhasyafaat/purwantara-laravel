@@ -47,7 +47,7 @@ public function create_va()
 use App\Models\Transaction;
 use Ezhasyafaat\PurwantaraLaravel\Purwantara;
 
-public function create_va()
+public function cancel_va()
 {
     $transaction    = Transaction::find(20);
     $input = [
