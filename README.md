@@ -73,3 +73,28 @@ public function inquiry_va()
     $response = Purwantara::inquiry_virtual_account($input);
 }
 ```
+
+<h3 id="virtual-account">🧸 QRIS</h3>
+Create QRIS serves as a means of payment for client.
+
+- EXAMPLE CREATE QRIS
+```php
+use Illuminate\Support\Str;
+use Ezhasyafaat\PurwantaraPayment\Purwantara;
+
+public function create_qris()
+{
+    $input = [
+        'amount'                => 10000, //Amount of qris
+        'customer_email'        => 'johndoe@apps.com', //Customer email
+        'customer_first_name'   => 'John', //Customer first name
+        'customer_last_name'    => 'Doe', //Customer last name
+        'customer_phone'        => '0812345678910', //Customer phone number
+        'description'           => 'Testing create qris', //Description of qris
+        'channel_name'          => 'shopeepay', //Payment channel at purwantara.id
+        'order_id_merchant'     => Str::uuid()
+    ];
+
+    $response = Purwantara::create_qris($input);
+}
+```
