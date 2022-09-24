@@ -20,7 +20,7 @@ And you have to provide bearer token in .env file. You can get bearer token at p
 PURWANTARA_TOKEN="BEARER_TOKEN_FROM_PURWANTARA"
 ```
 
-<h3 id="virtual-account">💳 Virtual account</h3>
+<h3 id="virtual-account">💈 Virtual account</h3>
 Virtual accounts is a medium for receiving payments that customer pay.
 
 - EXAMPLE CREATE VIRTUAL ACCOUNT
