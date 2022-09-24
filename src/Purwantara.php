@@ -126,7 +126,7 @@ class Purwantara {
             'customer_first_name'       => $input['customer_first_name'],
             'customer_last_name'        => $input['customer_last_name'],
             'customer_phon'             => $input['customer_phone'],
-            'transaction_description'   => $input['description'],
+            'transaction_description'   => isset($input['description']) ? $input['description'] : null,
             'payment_channel'           => $input['channel_name'],
             'order_id'                  => $input['order_id_merchant'],
             'merchant_trx_id'           => $input['order_id_merchant'],
