@@ -2,6 +2,8 @@
     <img src="https://i.ibb.co/HCwSsKx/purwantara-laravel-1.png" alt="purwantara-laravel">
 </p>
 
+[![CodeFactor](https://www.codefactor.io/repository/github/ezhasyafaat/purwantara-laravel/badge)](https://www.codefactor.io/repository/github/ezhasyafaat/purwantara-laravel)
+
 # PURWANTARA LARAVEL
 
 <h3 id="purwantara">✨ What is Purwantara?</h3> 
