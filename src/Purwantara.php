@@ -19,7 +19,7 @@ class Purwantara
     }
 
     public function create_virtual_account($input)
-    {   
+    {
         $parameter = [
             'name'              => $input['display_name'],
             'bank'              => $input['channel_name'],
