@@ -43,6 +43,7 @@ public function create_va()
         'order_id_merchant' => Str::uuid(), //Unique id from merchant, customize by merchant
         'expected_amount'   => 10000, //Amount of virtual account
         'description'       => 'Testing create virtual account' //Description of virtual account
+        'expired_at'        => Carbon::now()->addHours(2), //Set expired tme
     ];
     
     $response = Purwantara::create_virtual_account($input);

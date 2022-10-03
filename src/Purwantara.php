@@ -2,6 +2,7 @@
 
 namespace Ezhasyafaat\PurwantaraPayment;
 
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
 
 class Purwantara
@@ -18,7 +19,7 @@ class Purwantara
     }
 
     public function create_virtual_account($input)
-    {
+    {   
         $parameter = [
             'name'              => $input['display_name'],
             'bank'              => $input['channel_name'],
@@ -26,14 +27,15 @@ class Purwantara
             'merchant_trx_id'   => $input['order_id_merchant'],
             'expected_amount'   => $input['amount'],
             'description'       => isset($input['description']) ? $input['description'] : null,
+            'expired_at'        => Carbon::parse($input['expired_at'])->toIso8601String(),
         ];
 
         try {
             $response = Http::withToken(config('purwantara.token'))
-                ->withBody(json_encode($parameter), 'json')
-                ->post($this->host.'virtual-account');
+                ->post($this->host.'virtual-account', $parameter);
 
             $data = $response->json();
+            dd($data);
 
             if ($data['success'] == true) {
                 $value = $data['data'];
@@ -144,8 +146,7 @@ class Purwantara
 
         try {
             $response = Http::withToken(config('purwantara.token'))
-                ->withBody(json_encode($parameter), 'json')
-                ->post($this->host.'qris');
+                ->post($this->host.'qris', $parameter);
 
             $data = $response->json();
 
