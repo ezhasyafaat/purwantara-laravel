@@ -42,7 +42,7 @@ class Purwantara
                     'purwantara_uuid'   => $value['uuid'],
                     'order_id_merchant' => $value['external_id'],
                     'display_name'      => $value['name'],
-                    'channel_name'      => $value['bank'],
+                    'channel_name'      => $input['channel_name'],
                     'amount'            => $value['amount'],
                     'virtual_number'    => $value['va_number'],
                     'description'       => $value['description'],
