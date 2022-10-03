@@ -18,7 +18,7 @@ composer require ezhasyafaat/purwantara-laravel
 <h3 id="setup-configuration">🛠 Setup configuration</h3>
 
 ```bash
-php artisan vendor:publish --provider="Ezhasyafaat\PurwantaraLaravel\PurwantaraServiceProvider" --tag="config"
+php artisan vendor:publish --provider="Ezhasyafaat\PurwantaraPayment\PurwantaraServiceProvider" --tag="config"
 ```
 
 And you have to provide bearer token in .env file. You can get bearer token at purwantara.id
