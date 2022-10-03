@@ -35,7 +35,6 @@ class Purwantara
                 ->post($this->host.'virtual-account', $parameter);
 
             $data = $response->json();
-            dd($data);
 
             if ($data['success'] == true) {
                 $value = $data['data'];
