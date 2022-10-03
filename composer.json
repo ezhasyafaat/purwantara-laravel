@@ -16,6 +16,13 @@
             "Ezhasyafaat\\PurwantaraPayment\\": "src/"
         }
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Ezhasyafaat\\PurwantaraPayment\\PurwantaraServiceProvider"
+            ]
+        }
+    },
     "authors": [
         {
             "name": "Muh Ezha Syafaat",
