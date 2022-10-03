@@ -45,7 +45,8 @@ public function create_va()
         'description'       => 'Testing create virtual account' //Description of virtual account
     ];
     
-    $response = Purwantara::create_virtual_account($input);
+    $purwantara = new Purwantara;
+    $response = $purwantara->create_virtual_account($input);
 }
 ```
 
@@ -61,7 +62,8 @@ public function cancel_va()
         'purwantara_uuid' => $transaction->purwantara_uuid
     ];
 
-    $response = Purwantara::cancel_virtual_account($input);
+    $purwantara = new Purwantara;
+    $response = $purwantara->cancel_virtual_account($input);
 }
 ```
 
@@ -77,7 +79,8 @@ public function inquiry_va()
         'purwantara_uuid' => $transaction->purwantara_uuid
     ];
 
-    $response = Purwantara::inquiry_virtual_account($input);
+    $purwantara = new Purwantara;
+    $response = $purwantara->inquiry_virtual_account($input);
 }
 ```
 
@@ -102,7 +105,8 @@ public function create_qris()
         'order_id_merchant'     => Str::uuid()
     ];
 
-    $response = Purwantara::create_qris($input);
+    $purwantara = new Purwantara;
+    $response = $purwantara->create_qris($input);
 }
 ```
 
@@ -118,6 +122,7 @@ public function inquiry_qris()
         'purwantara_uuid' => $transaction->purwantara_uuid
     ];
 
-    $response = Purwantara::inquiry_qris($input);
+    $purwantara = new Purwantara;
+    $response = $purwantara->inquiry_qris($input);
 }
 ```
