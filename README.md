@@ -46,7 +46,7 @@ public function create_va()
     ];
     
     $purwantara = new Purwantara;
-    $response = $purwantara->create_virtual_account($input)
+    $response = $purwantara->create_virtual_account($input);
 }
 ```
 
