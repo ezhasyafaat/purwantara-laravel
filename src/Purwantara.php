@@ -220,8 +220,17 @@ class Purwantara
                     ->post($this->host. 'payment-link', $param);
     
             $response = $response->json();
-            
+
             if ($response['success']) {
+                $result = [
+                    'purwantara_uuid'   => $value['uuid'],
+                    'order_id_merchant' => $value['external_id'],
+                    'amount'            => $value['amount'],
+                    'payment_status'    => $value['status'],
+                    'expired'           => $value['expires_at'],
+                    'return_url'        => $value['return_url'],
+                    'payment_link_url'  => $value['payment_link_url'],
+                ];
                 return $response;
             }
 
