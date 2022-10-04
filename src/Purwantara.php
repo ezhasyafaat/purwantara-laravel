@@ -205,8 +205,8 @@ class Purwantara
         }
     }
 
-    public function create_payment_link($input = []) {
-
+    public function create_payment_link($input = [])
+    {
         try {
             $param = [
                 'amount' => $input['amount'],
@@ -217,8 +217,8 @@ class Purwantara
                 'return_url' => $input['return_url'],
             ];
             $response = Http::withToken(config('purwantara.token'))
-                    ->post($this->host. 'payment-link', $param);
-    
+                    ->post($this->host.'payment-link', $param);
+
             $response = $response->json();
             $value = $response['data'];
 
@@ -232,7 +232,7 @@ class Purwantara
                     'return_url'        => $value['return_url'],
                     'payment_link_url'  => $value['payment_link_url'],
                 ];
-                
+
                 return $result;
             }
 
@@ -241,6 +241,5 @@ class Purwantara
             return ['message' => $th->getMessage()];
             //throw $th;
         }
-        
     }
 }
