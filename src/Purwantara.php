@@ -192,7 +192,7 @@ class Purwantara
                 'amount' => $input['amount'],
                 'title' => $input['title'],
                 'description' => $input['description'],
-                'expires_at' => $input['expires_at'],
+                'expires_at' => Carbon::parse($input['expired_at'])->toIso8601String(),
                 'external_id' => $input['external_id'],
                 'return_url' => $input['return_url'],
             ];
