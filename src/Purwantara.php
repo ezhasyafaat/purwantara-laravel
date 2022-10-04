@@ -220,6 +220,7 @@ class Purwantara
                     ->post($this->host. 'payment-link', $param);
     
             $response = $response->json();
+            $value = $response['data'];
 
             if ($response['success']) {
                 $result = [
@@ -231,7 +232,8 @@ class Purwantara
                     'return_url'        => $value['return_url'],
                     'payment_link_url'  => $value['payment_link_url'],
                 ];
-                return $response;
+                
+                return $result;
             }
 
             return ['message' => 'Failed Create Payment Link'];
