@@ -18,7 +18,7 @@ class Purwantara
         }
     }
 
-    public function create_virtual_account($input)
+    public function create_virtual_account($input = [])
     {
         $parameter = [
             'name' => $input['display_name'],
@@ -59,7 +59,7 @@ class Purwantara
         }
     }
 
-    public function cancel_virtual_account($input)
+    public function cancel_virtual_account($input = [])
     {
         try {
             $response = Http::withToken(config('app.token'))
@@ -85,7 +85,7 @@ class Purwantara
         }
     }
 
-    public function inquiry_virtual_account($input)
+    public function inquiry_virtual_account($input = [])
     {
         try {
             $response = Http::withToken(config('app.token'))
@@ -116,7 +116,7 @@ class Purwantara
         }
     }
 
-    public function create_qris($input)
+    public function create_qris($input = [])
     {
         $parameter = [
             'amount' => $input['amount'],
@@ -157,7 +157,7 @@ class Purwantara
         }
     }
 
-    public function inquiry_qris($input)
+    public function inquiry_qris($input = [])
     {
         try {
             $response = Http::withToken(config('app.token'))
