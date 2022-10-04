@@ -204,4 +204,32 @@ class Purwantara
             return $return;
         }
     }
+
+    public function create_payment_link($input = []) {
+
+        try {
+            $param = [
+                'amount' => $input['amount'],
+                'title'  => $input['title'],
+                'description' => $input['description'],
+                'expires_at' => $input['expires_at'],
+                'external_id' => $input['external_id'],
+                'return_url' => $input['return_url'],
+            ];
+            $response = Http::withToken(config('purwantara.token'))
+                    ->post($this->host. 'payment-link', $param);
+    
+            $response = $response->json();
+            
+            if ($response['success']) {
+                return $response;
+            }
+
+            return ['message' => 'Failed Create Payment Link'];
+        } catch (\Throwable $th) {
+            return ['message' => $th->getMessage()];
+            //throw $th;
+        }
+        
+    }
 }
