@@ -127,3 +127,25 @@ public function inquiry_qris()
     $response = $purwantara->inquiry_qris($input);
 }
 ```
+
+- EXAMPLE CREATE PAYMENT LINK
+```php
+use Illuminate\Support\Str;
+use Ezhasyafaat\PurwantaraPayment\Purwantara;
+
+public function create_paymentlink()
+{
+    $input = [
+        'amount' => 10000,
+        'title' => 'SMARTPHONE STORE',
+        'description' => 'Buy Smartphone',
+        'expired_at' => Carbon::now()->addHour(),
+        'external_id' => Str::uuid(),
+        'return_url' => 'https://myapp.test/payment'
+
+    ];
+
+    $purwantara = new Purwantara;
+    $response = $purwantara->create_payment_link($input);
+}
+```
