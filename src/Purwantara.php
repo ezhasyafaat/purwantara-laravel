@@ -21,37 +21,37 @@ class Purwantara
     public function create_virtual_account($input)
     {
         $parameter = [
-            'name'              => $input['display_name'],
-            'bank'              => $input['channel_name'],
-            'external_id'       => $input['order_id_merchant'],
-            'merchant_trx_id'   => $input['order_id_merchant'],
-            'expected_amount'   => $input['amount'],
-            'description'       => isset($input['description']) ? $input['description'] : null,
-            'expired_at'        => Carbon::parse($input['expired_at'])->toIso8601String(),
+            'name' => $input['display_name'],
+            'bank' => $input['channel_name'],
+            'external_id' => $input['order_id_merchant'],
+            'merchant_trx_id' => $input['order_id_merchant'],
+            'expected_amount' => $input['amount'],
+            'description' => isset($input['description']) ? $input['description'] : null,
+            'expired_at' => Carbon::parse($input['expired_at'])->toIso8601String(),
         ];
 
         try {
             $response = Http::withToken(config('purwantara.token'))
-                ->post($this->host.'virtual-account', $parameter);
+                ->post($this->host . 'virtual-account', $parameter);
 
             $data = $response->json();
 
             if ($data['success'] == true) {
                 $value = $data['data'];
                 $return = [
-                    'purwantara_uuid'   => $value['uuid'],
+                    'purwantara_uuid' => $value['uuid'],
                     'order_id_merchant' => $value['external_id'],
-                    'display_name'      => $value['name'],
-                    'channel_name'      => $input['channel_name'],
-                    'amount'            => $value['amount'],
-                    'virtual_number'    => $value['va_number'],
-                    'description'       => $value['description'],
-                    'expired'           => $value['expired_at'],
-                    'payment_status'    => $value['status'],
+                    'display_name' => $value['name'],
+                    'channel_name' => $input['channel_name'],
+                    'amount' => $value['amount'],
+                    'virtual_number' => $value['va_number'],
+                    'description' => $value['description'],
+                    'expired' => $value['expired_at'],
+                    'payment_status' => $value['status'],
                 ];
             } else {
                 $return = [
-                    'message'    => 'Failed created virtual account',
+                    'message' => 'Failed created virtual account',
                 ];
             }
 
@@ -67,21 +67,21 @@ class Purwantara
     {
         try {
             $response = Http::withToken(config('app.token'))
-                ->post($this->host.'virtual-account/cancel/'.$input['purwantara_uuid']);
+                ->post($this->host . 'virtual-account/cancel/' . $input['purwantara_uuid']);
 
             $data = $response->json();
 
             if ($data['success'] == true) {
                 $value = $data['data'];
                 $return = [
-                    'order_id_merchant'     => $value['external_id'],
-                    'purwantara_uuid'       => $value['uuid'],
-                    'virtual_number'        => $value['va_number'],
-                    'message'               => $value['message'],
+                    'order_id_merchant' => $value['external_id'],
+                    'purwantara_uuid' => $value['uuid'],
+                    'virtual_number' => $value['va_number'],
+                    'message' => $value['message'],
                 ];
             } else {
                 $return = [
-                    'message'    => 'Failed cancel virtual account',
+                    'message' => 'Failed cancel virtual account',
                 ];
             }
 
@@ -97,26 +97,26 @@ class Purwantara
     {
         try {
             $response = Http::withToken(config('app.token'))
-                ->get($this->host.'virtual-account/inquiry/'.$input['purwantara_uuid']);
+                ->get($this->host . 'virtual-account/inquiry/' . $input['purwantara_uuid']);
 
             $data = $response->json();
 
             if ($data['success'] == true) {
                 $value = $data['data'];
                 $return = [
-                    'purwantara_uuid'   => $value['uuid'],
+                    'purwantara_uuid' => $value['uuid'],
                     'order_id_merchant' => $value['external_id'],
-                    'display_name'      => $value['name'],
-                    'channel_name'      => $value['bank'],
-                    'virtual_number'    => $value['va_number'],
-                    'amount'            => $value['amount'],
-                    'description'       => $value['description'],
-                    'expired'           => $value['expired_at'],
-                    'payment_status'    => $value['status'],
+                    'display_name' => $value['name'],
+                    'channel_name' => $value['bank'],
+                    'virtual_number' => $value['va_number'],
+                    'amount' => $value['amount'],
+                    'description' => $value['description'],
+                    'expired' => $value['expired_at'],
+                    'payment_status' => $value['status'],
                 ];
             } else {
                 $return = [
-                    'message'    => 'Failed inquiry virtual account',
+                    'message' => 'Failed inquiry virtual account',
                 ];
             }
 
@@ -131,37 +131,37 @@ class Purwantara
     public function create_qris($input)
     {
         $parameter = [
-            'amount'                    => $input['amount'],
-            'customer_email'            => $input['customer_email'],
-            'customer_first_name'       => $input['customer_first_name'],
-            'customer_last_name'        => $input['customer_last_name'],
-            'customer_phon'             => $input['customer_phone'],
-            'transaction_description'   => isset($input['description']) ? $input['description'] : null,
-            'payment_channel'           => $input['channel_name'],
-            'order_id'                  => $input['order_id_merchant'],
-            'merchant_trx_id'           => $input['order_id_merchant'],
-            'payment_method'            => 'wallet',
+            'amount' => $input['amount'],
+            'customer_email' => $input['customer_email'],
+            'customer_first_name' => $input['customer_first_name'],
+            'customer_last_name' => $input['customer_last_name'],
+            'customer_phon' => $input['customer_phone'],
+            'transaction_description' => isset($input['description']) ? $input['description'] : null,
+            'payment_channel' => $input['channel_name'],
+            'order_id' => $input['order_id_merchant'],
+            'merchant_trx_id' => $input['order_id_merchant'],
+            'payment_method' => 'wallet',
         ];
 
         try {
             $response = Http::withToken(config('purwantara.token'))
-                ->post($this->host.'qris', $parameter);
+                ->post($this->host . 'qris', $parameter);
 
             $data = $response->json();
 
             if ($data['success'] == true) {
                 $value = $data['data'];
                 $return = [
-                    'purwantara_uuid'   => $value['uuid'],
+                    'purwantara_uuid' => $value['uuid'],
                     'order_id_merchant' => $value['external_id'],
-                    'qris_string'       => $value['qr_string'],
-                    'qris_url'          => $value['qr_url'],
-                    'expired'           => $value['expired_time'],
-                    'payment_status'    => $value['status'],
+                    'qris_string' => $value['qr_string'],
+                    'qris_url' => $value['qr_url'],
+                    'expired' => $value['expired_time'],
+                    'payment_status' => $value['status'],
                 ];
             } else {
                 $return = [
-                    'message'    => 'Failed created virtual account',
+                    'message' => 'Failed created virtual account',
                 ];
             }
 
@@ -177,23 +177,23 @@ class Purwantara
     {
         try {
             $response = Http::withToken(config('app.token'))
-                ->get($this->host.'qris/inquiry/'.$input['purwantara_uuid']);
+                ->get($this->host . 'qris/inquiry/' . $input['purwantara_uuid']);
 
             $data = $response->json();
 
             if ($data['success'] == true) {
                 $value = $data['data'];
                 $return = [
-                    'purwantara_uuid'   => $value['uuid'],
+                    'purwantara_uuid' => $value['uuid'],
                     'order_id_merchant' => $value['external_id'],
-                    'qris_string'       => $value['qr_string'],
-                    'qris_url'          => $value['qr_url'],
-                    'expired'           => $value['expired_time'],
-                    'payment_status'    => $value['status'],
+                    'qris_string' => $value['qr_string'],
+                    'qris_url' => $value['qr_url'],
+                    'expired' => $value['expired_time'],
+                    'payment_status' => $value['status'],
                 ];
             } else {
                 $return = [
-                    'message'    => 'Failed inquiry qris',
+                    'message' => 'Failed inquiry qris',
                 ];
             }
 
@@ -210,27 +210,27 @@ class Purwantara
         try {
             $param = [
                 'amount' => $input['amount'],
-                'title'  => $input['title'],
+                'title' => $input['title'],
                 'description' => $input['description'],
                 'expires_at' => $input['expires_at'],
                 'external_id' => $input['external_id'],
                 'return_url' => $input['return_url'],
             ];
             $response = Http::withToken(config('purwantara.token'))
-                    ->post($this->host.'payment-link', $param);
+                    ->post($this->host . 'payment-link', $param);
 
             $response = $response->json();
             $value = $response['data'];
 
             if ($response['success']) {
                 $result = [
-                    'purwantara_uuid'   => $value['uuid'],
+                    'purwantara_uuid' => $value['uuid'],
                     'order_id_merchant' => $value['external_id'],
-                    'amount'            => $value['amount'],
-                    'payment_status'    => $value['status'],
-                    'expired'           => $value['expires_at'],
-                    'return_url'        => $value['return_url'],
-                    'payment_link_url'  => $value['payment_link_url'],
+                    'amount' => $value['amount'],
+                    'payment_status' => $value['status'],
+                    'expired' => $value['expires_at'],
+                    'return_url' => $value['return_url'],
+                    'payment_link_url' => $value['payment_link_url'],
                 ];
 
                 return $result;
