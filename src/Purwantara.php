@@ -32,7 +32,7 @@ class Purwantara
 
         try {
             $response = Http::withToken(config('purwantara.token'))
-                ->post($this->host . 'virtual-account', $parameter);
+                ->post($this->host.'virtual-account', $parameter);
 
             $response = $response->json();
 
@@ -63,7 +63,7 @@ class Purwantara
     {
         try {
             $response = Http::withToken(config('app.token'))
-                ->post($this->host . 'virtual-account/cancel/' . $input['purwantara_uuid']);
+                ->post($this->host.'virtual-account/cancel/'.$input['purwantara_uuid']);
 
             $data = $response->json();
 
@@ -89,7 +89,7 @@ class Purwantara
     {
         try {
             $response = Http::withToken(config('app.token'))
-                ->get($this->host . 'virtual-account/inquiry/' . $input['purwantara_uuid']);
+                ->get($this->host.'virtual-account/inquiry/'.$input['purwantara_uuid']);
 
             $reponse = $response->json();
 
@@ -133,7 +133,7 @@ class Purwantara
 
         try {
             $response = Http::withToken(config('purwantara.token'))
-                ->post($this->host . 'qris', $parameter);
+                ->post($this->host.'qris', $parameter);
 
             $response = $response->json();
 
@@ -161,7 +161,7 @@ class Purwantara
     {
         try {
             $response = Http::withToken(config('app.token'))
-                ->get($this->host . 'qris/inquiry/' . $input['purwantara_uuid']);
+                ->get($this->host.'qris/inquiry/'.$input['purwantara_uuid']);
 
             $response = $response->json();
 
@@ -197,7 +197,7 @@ class Purwantara
                 'return_url' => $input['return_url'],
             ];
             $response = Http::withToken(config('purwantara.token'))
-                    ->post($this->host . 'payment-link', $param);
+                    ->post($this->host.'payment-link', $param);
 
             $response = $response->json();
 

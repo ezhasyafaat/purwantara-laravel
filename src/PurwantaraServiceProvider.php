@@ -6,7 +6,7 @@ use Illuminate\Support\ServiceProvider;
 
 class PurwantaraServiceProvider extends ServiceProvider
 {
-    public const CONFIG_PATH = __DIR__ . '/../config/purwantara.php';
+    public const CONFIG_PATH = __DIR__.'/../config/purwantara.php';
 
     /**
      * Bootstrap services.
